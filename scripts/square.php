@@ -12,11 +12,12 @@
     </form>
     <?php
       if (!empty($_GET['sideA'])) {
-        $area = pow($_GET['sideA'], 2);
-        $rectangle = $_GET['sideA']*4;
+        $sideA = str_replace(",", ".", $_GET['sideA']);
+        $area = pow($sideA, 2);
+        $rectangle = $sideA*4;
         echo <<< RESULT
         <hr>
-        Pole kwadratu wynosi $area<br>
+        Pole kwadratu wynosi ${area}cm<sup>2</sup><br>
         Obwód kwadratu wynosi $rectangle
 RESULT;
       } else {
