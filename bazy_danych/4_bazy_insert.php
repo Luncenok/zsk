@@ -13,7 +13,7 @@
         background-color: lightgray;
       }
 
-      td:nth-of-type(5) {
+      td:nth-of-type(6) {
         background-color: red;
       }
 
@@ -36,7 +36,7 @@
       width: 300px;
       padding: 5px;
     }
-    input {
+    input, select {
       width: 100%;
       margin: 5px;
       padding: 5px;
@@ -50,11 +50,12 @@
       <th>name</th>
       <th>surname</th>
       <th>date</th>
+      <th>city</th>
       <th>usun</th>
     <tr>
 <?php
       require_once '../scripts/connect.php';
-      $sql = "SELECT * FROM users";
+      $sql = "SELECT users.id, users.id_city, users.name, users.surname, users.birthday, cities.name as city FROM users INNER JOIN cities on users.id_city = cities.id;";
       $result = $connect->query($sql);
       while ($row = $result->fetch_assoc()) {
         echo <<< TABLE
@@ -63,6 +64,7 @@
             <td>$row[name]</td>
             <td>$row[surname]</td>
             <td>$row[birthday]</td>
+            <td>$row[city]</td>
             <td><a href='../scripts/delete.php?id=$row[id]'>usuń</a</td>
           </tr>
         TABLE;
@@ -72,9 +74,20 @@
         echo<<<FORMADDUSER
 
         <form action="../scripts/insert.php" method="post">
-          <input type="text" name="cityid" placeholder="id miasta"><br>
           <input type="text" name="name" placeholder="imie"><br>
           <input type="text" name="surname" placeholder="nazwisko"><br>
+          <select name="cityid">
+FORMADDUSER;
+
+        $sql = "SELECT * FROM `cities`";
+        $result = $connect->query($sql);
+
+        while ($city = $result->fetch_assoc()) {
+          echo "<option value=\"$city[id]\">$city[name]</option>";
+        }
+
+        echo<<<FORMADDUSER
+          </select>
           <input type="date" name="birthday" placeholder="data urodzenia"><br>
           <input type="submit" value="dodaj uzytkownika">
         </form>
@@ -104,4 +117,5 @@ FORMADDUSER;
     ?>
 
   </body>
+
 </html>
