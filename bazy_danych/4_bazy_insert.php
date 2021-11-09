@@ -28,6 +28,19 @@
       table {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       }
+
+
+    form {
+      margin: 20px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      width: 300px;
+      padding: 5px;
+    }
+    input {
+      width: 100%;
+      margin: 5px;
+      padding: 5px;
+    }
     </style>
   </head>
   <body>
@@ -58,11 +71,11 @@
       if(isset($_GET['addUser'])){
         echo<<<FORMADDUSER
 
-        <form action="" method="post">
+        <form action="../scripts/insert.php" method="post">
           <input type="text" name="cityid" placeholder="id miasta"><br>
           <input type="text" name="name" placeholder="imie"><br>
           <input type="text" name="surname" placeholder="nazwisko"><br>
-          <input type="text" name="birthday" placeholder="data urodzenia"><br>
+          <input type="date" name="birthday" placeholder="data urodzenia"><br>
           <input type="submit" value="dodaj uzytkownika">
         </form>
 FORMADDUSER;
@@ -82,6 +95,11 @@ FORMADDUSER;
     <?php
     if (isset($_GET['delete'])) {
      echo "<p>".$_GET['delete']."</p>";
+    }
+    ?>
+    <?php
+    if (isset($_GET['error'])) {
+     echo "<p>".$_GET['error']."</p>";
     }
     ?>
 

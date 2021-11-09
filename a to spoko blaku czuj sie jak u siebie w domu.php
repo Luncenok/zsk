@@ -6,28 +6,10 @@
     <style>
       table, td, tr, th {
         border: 1px solid black;
-        border-radius: 5px;
+        border-collapse: collapse;
         padding: 10px;
       }
-      th {
-        background-color: lightgray;
-      }
 
-      td:nth-of-type(5) {
-        background-color: red;
-      }
-
-      a {
-        color: white;
-        text-decoration: none;
-      }
-
-      tr td:first-of-type {
-        background-color: lightgray;
-      }
-      table {
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-      }
     </style>
   </head>
   <body>
@@ -37,10 +19,9 @@
       <th>name</th>
       <th>surname</th>
       <th>date</th>
-      <th>usun</th>
     <tr>
 <?php
-      require_once '../scripts/connect.php';
+      require_once './scripts/connect.php';
       $sql = "SELECT * FROM users";
       $result = $connect->query($sql);
       while ($row = $result->fetch_assoc()) {
@@ -50,7 +31,6 @@
             <td>$row[name]</td>
             <td>$row[surname]</td>
             <td>$row[birthday]</td>
-            <td><a href='../scripts/delete.php?id=$row[id]'>usuń</a</td>
           </tr>
         TABLE;
       }
@@ -62,12 +42,5 @@
       // }
      ?>
    </table>
-
-   <?php
-   if (isset($_GET['delete'])) {
-    echo "<p>".$_GET['delete']."</p>";
-   }
-    ?>
-
   </body>
 </html>
