@@ -17,6 +17,10 @@
         background-color: red;
       }
 
+      td:nth-of-type(7) {
+        background-color: orange;
+      }
+
       table a {
         color: white;
         text-decoration: none;
@@ -35,6 +39,7 @@
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
       width: 300px;
       padding: 5px;
+      padding-right: 15px;
     }
     input, select {
       width: 100%;
@@ -52,6 +57,7 @@
       <th>date</th>
       <th>city</th>
       <th>usun</th>
+      <th>modyfikuj</th>
     <tr>
 <?php
       require_once '../scripts/connect.php';
@@ -66,6 +72,7 @@
             <td>$row[birthday]</td>
             <td>$row[city]</td>
             <td><a href='../scripts/delete.php?id=$row[id]'>usuń</a</td>
+            <td><a href='../scripts/updateform.php?id=$row[id]'>aktualizuj</a</td>
           </tr>
         TABLE;
       }
